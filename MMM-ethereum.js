@@ -1,14 +1,15 @@
 'use strict';
 
-Module.register("MMM-ethereum", {
+Module.register("MMM-ethereum-custom", {
 
   result: {},
   defaults: {
-    updateInterval: 30000,
-	exchange: 'kraken',
-	currencyPair: 'ethusd',
-	showHighLow: true,
-    highLowColor: true
+	  updateInterval: 30000,
+	  exchange: 'kraken',
+	  currencyPair: 'ethusd',
+	  showHighLow: true,
+	  highLowColor: true,
+	  ticker: 'ETH',
   },
 
   getStyles: function() {
@@ -27,12 +28,12 @@ Module.register("MMM-ethereum", {
 
     var data = this.result;
     var symbolElement =  document.createElement("span");
-	var breakElement =  document.createElement("br");
-    var symbol = "Eth";
-	var lastPrice = data.result.price.last;
-	var highPrice = data.result.price.high;
-	var lowPrice = data.result.price.low;
-	
+    var breakElement =  document.createElement("br");
+    var symbol = this.config.ticker;
+    var lastPrice = data.result.price.last;
+    var highPrice = data.result.price.high;
+    var lowPrice = data.result.price.low;
+
     if (lastPrice) {
       symbolElement.innerHTML = symbol + ' $';
       wrapper.appendChild(symbolElement);
